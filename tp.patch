@@ -1,0 +1,75 @@
+diff --git a/GitX.h b/GitX.h
+index e293d0e..5ead6c0 100644
+--- a/GitX.h
++++ b/GitX.h
+@@ -8,6 +8,16 @@
+ 
+ @class GitXApplication, GitXDocument, GitXWindow;
+ 
++@protocol GitXGenericMethods
++
++- (void) close;  // Close a document.
++- (void) delete;  // Delete an object.
++- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties;  // Copy an object.
++- (void) moveTo:(SBObject *)to;  // Move an object to a new location.
++- (void) searchString:(NSString *)string inMode:(NSInteger)inMode;  // Highlight commits that match the given search string.
++
++@end
++
+ 
+ 
+ /*
+@@ -17,14 +27,14 @@
+ // The application's top-level scripting object.
+ @interface GitXApplication : SBApplication
+ 
+-- (SBElementArray *) documents;
+-- (SBElementArray *) windows;
++- (SBElementArray<GitXDocument *> *) documents;
++- (SBElementArray<GitXWindow *> *) windows;
+ 
+ @property (copy, readonly) NSString *name;  // The name of the application.
+ @property (readonly) BOOL frontmost;  // Is this the active application?
+ @property (copy, readonly) NSString *version;  // The version number of the application.
+ 
+-- (void) open:(NSArray *)x;  // Open a document.
++- (void) open:(NSArray<NSURL *> *)x;  // Open a document.
+ - (void) quit;  // Quit the application.
+ - (BOOL) exists:(id)x;  // Verify that an object exists.
+ - (void) showDiff:(NSString *)x;  // Show the supplied diff output in a GitX window.
+@@ -34,21 +44,16 @@
+ @end
+ 
+ // A document.
+-@interface GitXDocument : SBObject
++@interface GitXDocument : SBObject <GitXGenericMethods>
+ 
+ @property (copy, readonly) NSString *name;  // Its name.
+ @property (copy, readonly) NSURL *file;  // Its location on disk, if it has one.
+ 
+-- (void) close;  // Close a document.
+-- (void) delete;  // Delete an object.
+-- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties;  // Copy an object.
+-- (void) moveTo:(SBObject *)to;  // Move an object to a new location.
+-- (void) searchString:(NSString *)string inMode:(NSInteger)inMode;  // Highlight commits that match the given search string.
+ 
+ @end
+ 
+ // A window.
+-@interface GitXWindow : SBObject
++@interface GitXWindow : SBObject <GitXGenericMethods>
+ 
+ @property (copy, readonly) NSString *name;  // The title of the window.
+ - (NSInteger) id;  // The unique identifier of the window.
+@@ -63,11 +68,6 @@
+ @property BOOL zoomed;  // Is the window zoomed right now?
+ @property (copy, readonly) GitXDocument *document;  // The document whose contents are displayed in the window.
+ 
+-- (void) close;  // Close a document.
+-- (void) delete;  // Delete an object.
+-- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties;  // Copy an object.
+-- (void) moveTo:(SBObject *)to;  // Move an object to a new location.
+-- (void) searchString:(NSString *)string inMode:(NSInteger)inMode;  // Highlight commits that match the given search string.
+ 
+ @end
+ 
