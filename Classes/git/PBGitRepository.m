@@ -291,10 +291,7 @@ NSString *PBGitRepositoryDocumentType = @"Git Repository";
 	NSMutableOrderedSet *oldBranches = [self.branchesSet mutableCopy];
 	for (NSString* referenceName in allRefs)
 	{
-		GTReference* gtRef =
-		[[GTReference alloc] initByLookingUpReferenceNamed:referenceName
-											  inRepository:self.gtRepo
-													 error:&error];
+		GTReference* gtRef = [self.gtRepo lookUpReferenceWithName:referenceName error:&error];
 		
 		if (gtRef == nil)
 		{
@@ -386,9 +383,7 @@ NSString *PBGitRepositoryDocumentType = @"Git Repository";
     
 	
 	NSError* error = nil;
-	GTReference* gtRef = [GTReference referenceByLookingUpReferencedNamed:ref.ref
-															 inRepository:self.gtRepo
-																	error:&error];
+	GTReference* gtRef = [self.gtRepo lookUpReferenceWithName:ref.ref error:&error];
 	if (error)
 	{
 		NSLog(@"Error looking up ref for %@", ref.ref);
@@ -490,7 +485,7 @@ NSString *PBGitRepositoryDocumentType = @"Git Repository";
 - (BOOL) refExists:(PBGitRef *)ref
 {
 	NSError *gtError = nil;
-	GTReference *gtRef = [GTReference referenceByLookingUpReferencedNamed:ref.ref inRepository:self.gtRepo error:&gtError];
+	GTReference *gtRef = [self.gtRepo lookUpReferenceWithName:ref.ref error:&gtError];
 	if (gtRef) {
 		return YES;
 	}

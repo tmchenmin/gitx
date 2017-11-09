@@ -286,6 +286,20 @@
 			remoteGlobalIDString = 551BF110112F371800265053;
 			remoteInfo = gitx_askpasswd;
 		};
+		E7F9D2531FB49D8C000A9953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A4EF09F142CBAD5001B8CDF /* ObjectiveGitFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F879D8361B4B7F7C002D5C07;
+			remoteInfo = "ObjectiveGit-iOSTests";
+		};
+		E7F9D25D1FB49D8C000A9953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A68AD5814A0050E006DE321 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 726B2B5D1C645FC900388755;
+			remoteInfo = "UI Tests";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -665,8 +679,9 @@
 			isa = PBXGroup;
 			children = (
 				4A4EF0AF142CBAD5001B8CDF /* ObjectiveGit.framework */,
-				4A4EF0B3142CBAD5001B8CDF /* libObjectiveGit-iOS.a */,
 				4ADAA9C21602ADB8007A0E6F /* ObjectiveGitTests.xctest */,
+				4A4EF0B3142CBAD5001B8CDF /* libObjectiveGit-iOS.a */,
+				E7F9D2541FB49D8C000A9953 /* ObjectiveGit-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1010,6 +1025,7 @@
 				4A68AD6B14A0050F006DE321 /* Sparkle Unit Tests.octest */,
 				4A68AD6D14A0050F006DE321 /* BinaryDelta */,
 				4A68AD6F14A0050F006DE321 /* finish_installation.app */,
+				E7F9D25E1FB49D8C000A9953 /* UI Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1138,8 +1154,8 @@
 		};
 		4A4EF0B3142CBAD5001B8CDF /* libObjectiveGit-iOS.a */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libObjectiveGit-iOS.a";
+			fileType = wrapper.framework;
+			path = ObjectiveGit.framework;
 			remoteRef = 4A4EF0B2142CBAD5001B8CDF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1160,7 +1176,7 @@
 		4A68AD6B14A0050F006DE321 /* Sparkle Unit Tests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Sparkle Unit Tests.octest";
+			path = "Sparkle Unit Tests.xctest";
 			remoteRef = 4A68AD6A14A0050F006DE321 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1174,7 +1190,7 @@
 		4A68AD6F14A0050F006DE321 /* finish_installation.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = finish_installation.app;
+			path = Autoupdate.app;
 			remoteRef = 4A68AD6E14A0050F006DE321 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1195,8 +1211,22 @@
 		4ADAA9C21602ADB8007A0E6F /* ObjectiveGitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = ObjectiveGitTests.xctest;
+			path = "ObjectiveGit-MacTests.xctest";
 			remoteRef = 4ADAA9C11602ADB8007A0E6F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7F9D2541FB49D8C000A9953 /* ObjectiveGit-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ObjectiveGit-iOSTests.xctest";
+			remoteRef = E7F9D2531FB49D8C000A9953 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7F9D25E1FB49D8C000A9953 /* UI Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "UI Tests.xctest";
+			remoteRef = E7F9D25D1FB49D8C000A9953 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1533,6 +1563,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = /Applications;
+				LIBRARY_SEARCH_PATHS = "objective-git/External";
 				PRODUCT_NAME = GitX;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
@@ -1550,6 +1581,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INSTALL_PATH = /Applications;
+				LIBRARY_SEARCH_PATHS = "objective-git/External";
 				PRODUCT_NAME = GitX;
 				STRIP_INSTALLED_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
